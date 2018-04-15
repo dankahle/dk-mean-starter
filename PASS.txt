@@ -1,78 +1,8 @@
 
-pass:
-next up:
 
-graphql and rest in project
-* add dk-crud-be database/rest/api >> make work
-
-clone to dk-mean-starter
-* drop cisco stuff
+todo:
 * add material typography
-* change remote to dk-mean-starter
-
-remove fin-dfa
-clone to fin-dfa
-change remote to fin-dfa
-put girls stuff in ui
-
-next steps:
 * add testing
-
-
-
-
-
-pass:
-spending way too much time avoiding that server promise. Not a horrible thing to do. Where you are:
-
-readfileSync gets you config, then can push all express to another file and do:
-const app = require('setMiddleware')(config);
-then http/https.createServer(app)
-
-Hmmm. but you want app for test right? grrrr. oh, if unit then don't create server, and always export app?
-
-
-pass:
-all done with initial frontend requirements, now check out that node process.env thing in dk-crud-be, then get onto server next, once done with server, bring over the girl's pages and make that work with mongo.
-then start on db script and then move into testing (next weekend), this week file upload, etc is priority.
-Focus on upgrading quickly. Add functionality to starter, then update dfa and make work with thier screens
-then make demo screens and demo data for starter, back and forth like that.
-
-
-
-pass:
-stop right here and poc on dk-crud-be for apiUrl, can you know to set it to empty string or so for prod?
-do your node module test that hits process.env as well. What does that ui see when you run it in diff envs? what is process.env then? Can't know the env with ng, but can set it in the env file, so know that way
-
-
-problem:
-you need cors/apiurl for local/unit, but not for dev/qa/prod (grrr), worstcase scenario: need to update server and ui config files for this. Oh... you know it's env, maybe not get from ?? but can set it in config files if nothing else and check it from there. So... services look for env: dev/qa/prod and if so, don't put on prefix, just hit "api/graphql" instead? Need a poc on this, crud-be I suppose.
-
-
-pass:
-added contacts-fe modules, now need to take stuff out.
-with material and cui... still use an index BUT... only add things the app is using, so... they add to index only, and if not in app, won't be in index. This is bigger for cui as they have a million comps? No, they have a bunch of modules, but also comps as well?
-
-
-pass:
-you were adding cisco comps (painful) then did commit and push but bitbucket's down so can't push, BUT...
-YOU CAN'T PUSH ANYWAY RIGHT? I.e. push is turned off, need to allow push for this work, and use PRs for fin-dfa only until you get this starter together
-
-Anyway fix the security on fin-starter, push, then put material on.
-you have special code in index.html already, so leave that alone. Bring in core/shared/store/routing etc and create a cisco comp index with all the comps like material? OR is that overkill?
-
-ditch the material typography right? Is that a separate file? ... doesnt' look like it, looks like you're cool if you just leave the class=mat-typography off the body tag
-
-
-
-adding packages:
-
-* material
-* cisco ui
-* add css files to index.html
-
-alias npm-default='npm config set registry https://registry.npmjs.org'
-alias npm-sinopia='npm config set registry http://localhost:4873/'
 
 
 

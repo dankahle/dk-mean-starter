@@ -11,7 +11,6 @@ import {ErrorModalComponent} from './dialogs/error-modal/error-modal.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { NotImplementedComponent } from './dialogs/not-implemented/not-implemented.component';
 import {TrimInputValueAccessor} from './accessors/trim-input-value.accessor';
-import {CuiIndexModule} from "./cui-index/cui-index.module";
 import {RoutingModule} from "../routing/routing.module";
 import {ApolloModule} from 'apollo-angular';
 import {HttpLinkModule} from 'apollo-angular-link-http';
@@ -20,7 +19,6 @@ import {HttpLinkModule} from 'apollo-angular-link-http';
   imports: [
     CommonModule,
     MaterialIndexModule,
-    CuiIndexModule,
     FlexLayoutModule,
     FormsModule,
     RoutingModule,
@@ -30,7 +28,7 @@ import {HttpLinkModule} from 'apollo-angular-link-http';
   declarations: [PageNotFoundComponent, ForbiddenNameValidator, MinValidator, MaxValidator, ProgressComponent, ErrorModalComponent,
     NotImplementedComponent, TrimInputValueAccessor],
   exports: [
-    MaterialIndexModule, CuiIndexModule, FlexLayoutModule, RoutingModule, FormsModule, ApolloModule, HttpLinkModule,
+    MaterialIndexModule, FlexLayoutModule, RoutingModule, FormsModule, ApolloModule, HttpLinkModule,
     PageNotFoundComponent, ForbiddenNameValidator, MinValidator, MaxValidator, ProgressComponent, ErrorModalComponent,
     NotImplementedComponent, TrimInputValueAccessor],
   entryComponents: [ErrorModalComponent, NotImplementedComponent]
