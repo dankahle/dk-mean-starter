@@ -1,7 +1,7 @@
 {
-  "name": "fin-starter",
+  "name": "dk-mean-starter",
   "version": "1.0.0",
-  "description": "finance mean starter project",
+  "description": "mean starter project",
   "main": "server/server.js",
   "scripts": {
     "seed": "mongo database/seed.js",
@@ -39,7 +39,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://dakahle@gitscm.cisco.com/scm/it-cvc-ciscocommerce-findfaapp/fin-starter.git"
+    "url": "https://github.com/dankahle/dk-mean-starter.git"
   },
   "author": "",
   "license": "ISC"
