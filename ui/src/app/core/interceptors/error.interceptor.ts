@@ -7,11 +7,11 @@ import {
   HttpResponse
 } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {ProgressService} from '../services/progress.service';
+import {ProgressService} from '../services/common/progress.service';
 import {MatDialog, MatDialogConfig} from '@angular/material';
 import {ErrorModalComponent} from '../../shared/dialogs/error-modal/error-modal.component';
 import {Router} from '@angular/router';
-import {errorCodes} from '../services/error-codes';
+import {errorCodes} from '../services/common/error-codes';
 import * as _ from 'lodash';
 import {environment} from '../../../environments/environment';
 
@@ -44,6 +44,15 @@ export class ErrorInterceptor implements HttpInterceptor {
           if (!resp.error.error.errorCode) {
             err.errorCode = errorCodes.server_prefix + errorCodes.server_unknown_error;
           }
+        } else if (resp.error.errors && resp.error.errors.length) {
+          if (resp.error.errors.length === 1) {
+            err = {message: resp.error.errors[0].message};
+          } else {
+            err = {
+              message: 'graphql errors',
+              data: resp.error.errors.map(err => err.message).join('\n')
+            }
+          }
         } else {
           err = {
             message: 'Unknown server error',
@@ -66,7 +75,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
         const config = <MatDialogConfig> {
           data: {error: err},
-          width: '500px',
+          width: '600px',
           backdropClass: 'bg-modal-backdrop'
         };
         this.dialog.open(ErrorModalComponent, config)

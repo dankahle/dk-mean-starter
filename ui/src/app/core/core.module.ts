@@ -30,15 +30,12 @@ import {UserService} from "./services/user.service";
 // https://www.apollographql.com/docs/angular/features/cache-updates.html
 const defaultOptions: DefaultOptions = {
   watchQuery: {
-    fetchPolicy: 'no-cache',
-    errorPolicy: 'all',
+    fetchPolicy: 'no-cache'
   },
   query: {
-    fetchPolicy: 'no-cache',
-    errorPolicy: 'all',
+    fetchPolicy: 'no-cache'
   },
   mutate: {
-    errorPolicy: 'all',
   },
 };
 
