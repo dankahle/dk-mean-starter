@@ -31,7 +31,22 @@ export class ErrorInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next
       .handle(req)
-      .do(event => {
+      .do(resp => {
+        const r = <any>resp;
+        if (r.status === 200 && r.body && r.body.errors) {
+          const errors = r.body.errors;
+          let err;
+          if (errors.length === 1) {
+            err = {message: errors[0].message};
+          } else {
+            err = {
+              message: 'graphql errors',
+              data: errors.map(err => err.message).join('\n')
+            }
+          }
+
+          this.putUpErrorDialog(err);
+        }
       })
       .catch(resp => {
         this.progressService.hideProgressBar();
@@ -73,19 +88,24 @@ export class ErrorInterceptor implements HttpInterceptor {
           this.router.navigateByUrl('/login');
         }
 
-        const config = <MatDialogConfig> {
-          data: {error: err},
-          width: '600px',
-          backdropClass: 'bg-modal-backdrop'
-        };
-        this.dialog.open(ErrorModalComponent, config)
-          .afterClosed()
-          .subscribe(result => {
-            // if (resp.error && resp.error.errorCode === 'xxx-xxxx') {
-            //   this.router.navigateByUrl('/');
-            // }
-          });
+        this.putUpErrorDialog(err);
         return Observable.throw(err);
+      });
+  }
+
+  putUpErrorDialog(err) {
+
+    const config = <MatDialogConfig> {
+      data: {error: err},
+      width: '600px',
+      backdropClass: 'bg-modal-backdrop'
+    };
+    this.dialog.open(ErrorModalComponent, config)
+      .afterClosed()
+      .subscribe(result => {
+        // if (resp.error && resp.error.errorCode === 'xxx-xxxx') {
+        //   this.router.navigateByUrl('/');
+        // }
       });
   }
 
